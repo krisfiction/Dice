@@ -38,9 +38,9 @@ namespace maincode
 
                 string[] second_split = first_split[1].Split('+');
                 // Console.WriteLine("\n" + "2d6+7 sides of dice: " + second_split[0]);
-                Variables.NumOfSides = Int32.Parse(second_split[0]);
+                Variables.SetNumOfSides(Int32.Parse(second_split[0]));
                 //Console.WriteLine("\n" + "2d6+7 additive: " + second_split[1]);
-                Variables.AddOrNeg = Int32.Parse(second_split[1]);
+                Variables.SetAddOrNeg(Int32.Parse(second_split[1]));
 
                 Roll();
 
@@ -51,9 +51,9 @@ namespace maincode
 
                 string[] second_split = first_split[1].Split('-');
                 //Console.WriteLine("\n" + "2d6-7 sides of dice: " + second_split[0]);
-                Variables.NumOfSides = Int32.Parse(second_split[0]);
+                Variables.SetNumOfSides(Int32.Parse(second_split[0]));
                 //Console.WriteLine("\n" + "2d6-7 additive: " + second_split[1]);
-                Variables.AddOrNeg = Int32.Parse(second_split[1]);
+                Variables.SetAddOrNeg(Int32.Parse(second_split[1]));
 
                 Roll();
             }
@@ -66,7 +66,7 @@ namespace maincode
                 //Console.WriteLine("\n" + "first number: " + first_split[0]); //testing only
                 Variables.NumOfDice = Int32.Parse(first_split[0]);
                 //Console.WriteLine("\n" + "second number: " + first_split[1]); //testing only
-                Variables.NumOfSides = Int32.Parse(first_split[1]);
+                Variables.SetNumOfSides(Int32.Parse(first_split[1]));
 
                 Roll();
             }
@@ -78,18 +78,18 @@ namespace maincode
 
             for (int i = 0; i < Variables.NumOfDice; i++)
             {
-                Variables.Total += Random.Next(1, Variables.NumOfSides);
+                Variables.Total += Random.Next(1, Variables.GetNumOfSides());
             }
 
             if (Variables.DiceInput.Contains("+"))
             {
                 //Console.WriteLine("plus");
-                Variables.Total += Variables.AddOrNeg;
+                Variables.Total += Variables.GetAddOrNeg();
             }
             else if (Variables.DiceInput.Contains("-"))
             {
                 //Console.WriteLine("negative");
-                Variables.Total -= Variables.AddOrNeg;
+                Variables.Total -= Variables.GetAddOrNeg();
             }
 
             Console.WriteLine("this is it -- total: " + Variables.Total);

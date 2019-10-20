@@ -29,9 +29,9 @@ namespace AppTest
         {
             //rest variables - probably needs moved
             Variables.NumOfDice = 0;
-            Variables.NumOfSides = 0;
+            Variables.SetNumOfSides(0);
             Variables.Total = 0;
-            Variables.AddOrNeg = 0;
+            Variables.SetAddOrNeg(0);
 
             
             //call dice program 
@@ -47,8 +47,9 @@ namespace AppTest
             // switch case code
             Console.WriteLine("Would you like to roll again?");
             Console.WriteLine("1 for Yes or 2 for No");
-            
+
             //need error checking for when useing enter a letter instead of a number
+
             int intTemp = Convert.ToInt32(Console.ReadLine());
             switch (intTemp)
             {

@@ -8,35 +8,37 @@ namespace variables
 {
     public class Variables
     {
+        private static int numOfSides = 0;
 
-//number of side
-        private static int nos = 0;
-
-        public static int NumOfSides
+        public static int GetNumOfSides()
         {
-            get { return nos; }
-            set { nos= value; }
+            return numOfSides;
         }
 
-//number of dice
+        public static void SetNumOfSides(int value)
+        {
+            numOfSides = value;
+        }
+
+        //number of dice
         private static int nod = 0;
 
         public static int NumOfDice
         {
-            get { return nod; }
-            set { nod = value; }
+            get { return Nod; }
+            set { Nod = value; }
         }
 
 //additive or negative
         private static int aon = 0;
 
-        public static int AddOrNeg
-        {
-            get { return aon; }
-            set { aon = value; }
-        }
+        public static int GetAddOrNeg()
+        { return aon; }
 
-//dice input
+        public static void SetAddOrNeg(int value)
+        { aon = value; }
+
+        //dice input
         private static string di;
 
         public static string DiceInput
@@ -50,12 +52,13 @@ namespace variables
 
         public static int Total
         {
-            get { return tot; }
-            set { tot = value; }
+            get { return Tot; }
+            set { Tot = value; }
         }
 
-
-
-
+        public static int Tot { get => Tot1; set => Tot1 = value; }
+        public static int Tot1 { get => Tot2; set => Tot2 = value; }
+        public static int Tot2 { get => tot; set => tot = value; }
+        public static int Nod { get => nod; set => nod = value; }
     }
 }
