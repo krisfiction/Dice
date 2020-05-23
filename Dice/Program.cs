@@ -3,78 +3,52 @@
  *  By: Kris Fiction
  *  krisfiction@gmail.com
  *
- *  Microsoft Visual Studio Community 2017
- *  Visual C# Console App
+ *  Microsoft Visual Studio Community 2019
+ *  C# Console App
  *
  *  RPG Dice Roller is a app to aid in rolling RPG dice.
- *  1d6 = rolls one six sided die
- *  2d6 = rolls two six sided die
- *  2d6+4 = rolls two six sided die and adds 4 to the total
- *  2d6-4 = rolls two six sided die and subtracts 4 from the total
+ *  1d6 = rolls one six sided die (1 - 6)
+ *  2d6 = rolls two six sided die (2 - 12)
+ *  2d6+4 = rolls two six sided die and adds 4 to the total (6 - 16)
+ *  2d6-4 = rolls two six sided die and subtracts 4 from the total (-2 - 8)
  *
- *  Last Update: 03-11-2019
+ *  Last Update: 2020-05-23
  */
 
-
-
 using System;
-using maincode;
-using variables;
+using RPGdice;
 
-namespace AppTest 
+namespace AppTest
 {
-    class Program
+    internal static class Program
     {
-        static void Main()
+        public static string Input { get; set; }
+        public static int Answer { get; set; }
+
+
+        private static void Main()
         {
-            //rest variables - probably needs moved
-            Variables.NumOfDice = 0;
-            Variables.SetNumOfSides(0);
-            Variables.Total = 0;
-            Variables.SetAddOrNeg(0);
+            Console.WriteLine("Welcome to the RPG dice roller.");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("what dice would you like to roll?");
 
-            
-            //call dice program 
-            DiceRoller diceRoller = new DiceRoller();
-            diceRoller.Start();
+            Input = Console.ReadLine();
 
-            diceRoller.SplitInput(Variables.DiceInput);
+            Dice dice = new Dice();
+            Answer = dice.Roll(Input);
+            Console.WriteLine(Answer);
 
+            //! testing
+            //int i = 0;
+            //do
+            //{
+            //    int answer = dice.Roll("2d12+5"); //7, 29
+            //    Console.WriteLine(answer);
+            //    i++;
+            //} while (i < 100);
 
-
-
-
-            // switch case code
-            Console.WriteLine("Would you like to roll again?");
-            Console.WriteLine("1 for Yes or 2 for No");
-
-            //need error checking for when useing enter a letter instead of a number
-
-            int intTemp = Convert.ToInt32(Console.ReadLine());
-            switch (intTemp)
-            {
-                case 1:
-                    Console.WriteLine("yes");
-                    Main();
-                    break;
-                    //re-run code here
-                case 2:
-                    Console.WriteLine("no");
-                    Environment.Exit(0);
-                    break;
-                    //exit code here
-                default:
-                    Console.WriteLine("other");
-                    Main();
-                    break;
-                    // re-run
-            }
-             
-
-
-
-            /* if code
-            Console.WriteLine("\n\n" + "Would you like to roll another");
+            Console.WriteLine("\n\nWould you like to roll another");
             Console.WriteLine("[Y]es or [N]o");
             string x = Console.ReadLine();
 
@@ -90,21 +64,6 @@ namespace AppTest
             {
                 Main(); //re-run if user enter wrong info
             }
-            */
-
-
-
-
-
-
-
-            //to keep console alive
-            Console.WriteLine("\n" + "press any key to exit.");
-            Console.ReadKey();
-            
         }
-        
     }
-    
 }
- 
